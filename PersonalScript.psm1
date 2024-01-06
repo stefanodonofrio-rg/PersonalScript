@@ -1,3 +1,4 @@
+Import-Module -Name SqlServer
 
 function Help {
     Write-Host "Personal available commands:"

@@ -5,11 +5,12 @@ function Help {
     Write-Host "1- Invoke-SQMPosh"
     Write-Host "2- Start-SQMPester"
     Write-Host "3- Set-Bm"
-    Write-Host "4- New-Db"
-    Write-Host "5- Remove-Db"
-    Write-Host "6- Backup-Db"
-    Write-Host "7- Restore-Db"
-    Write-Host "8- Add-Note"
+    Write-Host "4- Get-Dbs"
+    Write-Host "5- New-Db"
+    Write-Host "6- Remove-Db"
+    Write-Host "7- Backup-Db"
+    Write-Host "8- Restore-Db"
+    Write-Host "9- Add-Note"
 }
 
 function Add-Note {
@@ -66,6 +67,14 @@ function Set-Bm {
     [xml]$xmlDoc = Get-Content -Path $BmPath
     $xmlDoc.component.configuration.option[1].value = $NewProgramArgument
     $xmlDoc.Save($BmPath)
+}
+
+function Get-Dbs {
+    $sqlScript = "SELECT name FROM master.sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')"
+    $dbs = Invoke-SqlCmd -ServerInstance $instanceName -Query $sqlScript -TrustServerCertificate
+    foreach ($db in $dbs) {
+        Write-Output $db.name
+    }
 }
 
 function New-Db {

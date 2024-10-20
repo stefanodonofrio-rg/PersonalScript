@@ -11,6 +11,11 @@ function Help {
     Write-Host "7- Backup-Db"
     Write-Host "8- Restore-Db"
     Write-Host "9- Add-Note"
+    Write-Host "10- Start-Aspire"
+}
+
+function Start-Aspire{
+    docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard -e DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS='true' mcr.microsoft.com/dotnet/nightly/aspire-dashboard
 }
 
 function Add-Note {

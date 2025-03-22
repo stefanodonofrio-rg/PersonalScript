@@ -1,0 +1,13 @@
+<Configuration>
+<Networking>true</Networking>
+<MappedFolders>
+  <MappedFolder>
+    <HostFolder>C:\Repos\Personal\PersonalScript\SandboxShare</HostFolder>
+    <SandboxFolder>C:\SandBoxShare</SandboxFolder>
+    <ReadOnly>false</ReadOnly>
+  </MappedFolder>
+</MappedFolders>
+<LogonCommand>
+    <Command>C:\SandBoxShare\LogonScript.bat</Command>
+</LogonCommand>
+</Configuration>
